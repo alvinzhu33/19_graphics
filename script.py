@@ -42,31 +42,31 @@ def run(filename):
             
         elif line == 'torus':
             #print 'TORUS\t' + str(args)
-            add_torus(edges,
+            add_torus(tmp,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), step)
-            matrix_mult( systems[-1], edges )
-            draw_polygons(edges, screen, color)
-            edges = []
+            matrix_mult( systems[-1], tmp )
+            draw_polygons(tmp, screen, color)
+            tmp = []
             
         elif line == 'box':
             #print 'BOX\t' + str(args)
-            add_box(edges,
+            add_box(tmp,
                     float(args[0]), float(args[1]), float(args[2]),
                     float(args[3]), float(args[4]), float(args[5]))
-            matrix_mult( systems[-1], edges )
-            draw_polygons(edges, screen, color)
-            edges = []
+            matrix_mult( systems[-1], tmp )
+            draw_polygons(tmp, screen, color)
+            tmp = []
             
         elif line == 'circle':
             #print 'CIRCLE\t' + str(args)
-            add_circle(edges,
+            add_circle(tmp,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
 
         elif line == 'hermite' or line == 'bezier':
             #print 'curve\t' + line + ": " + str(args)
-            add_curve(edges,
+            add_curve(tmp,
                       float(args[0]), float(args[1]),
                       float(args[2]), float(args[3]),
                       float(args[4]), float(args[5]),
@@ -76,7 +76,7 @@ def run(filename):
         elif line == 'line':            
             #print 'LINE\t' + str(args)
 
-            add_edge( edges,
+            add_edge( tmp,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), float(args[5]) )
 
@@ -107,13 +107,13 @@ def run(filename):
             systems[-1] = [ x[:] for x in t]
                 
         elif line == 'clear':
-            edges = []
+            tmp = []
             
         elif line == 'ident':
             ident(transform)
 
         elif line == 'apply':
-            matrix_mult( transform, edges )
+            matrix_mult( transform, tmp )
 
         elif line == 'push':
             systems.append( [x[:] for x in systems[-1]] )
