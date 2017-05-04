@@ -27,7 +27,7 @@ def run(filename):
     tmp = []
     step = 0.1
     for command in commands:
-        print command
+        #print command
 
         line = command[0];
             
